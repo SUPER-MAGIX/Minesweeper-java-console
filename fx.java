@@ -46,19 +46,72 @@ public class fx {
 				//System.out.println(area[0]+" "+area[1]+" "+area[2]+" "+area[3]+" "+area[4]+" "+area[5]+" "+area[6]+" "+area[7]);
 				c[pos-1] = numbers[V(area, mines, pos, DefSize)];
 				
-				
-			}
+				if (SquaresLeft == 0)
+				{
+					System.out.println("You won!!!");
+					GameOver = true;
+				}
+				else if (c[pos-1] == '⚪')
+				{
+					if (area[0] == true && c[pos-DefSize-3] == '⬛')
+						SelectSquare(pos-DefSize-2, c, mines);
+					
+					if (area[1] == true && c[pos-DefSize-2] == '⬛')
+						SelectSquare(pos-DefSize-1, c, mines);
+					
+					if (area[2] == true && c[pos-DefSize-1] == '⬛')
+						SelectSquare(pos-DefSize, c, mines);
+					
+					if (area[3] == true && c[pos-2] == '⬛')
+						SelectSquare(pos-1, c, mines);
+					
+					if (area[4] == true && c[pos] == '⬛')
+						SelectSquare(pos+1, c, mines);
+					
+					if (area[5] == true && c[pos+DefSize-1] == '⬛')
+						SelectSquare(pos+DefSize, c, mines);
+					
+					if (area[6] == true && c[pos+DefSize] == '⬛')
+						SelectSquare(pos+DefSize+1, c, mines);
+					
+					if (area[7] == true && c[pos+DefSize+1] == '⬛')
+						SelectSquare(pos+DefSize+2, c, mines);
+					/*
+					if (area[0] == true && c[pos-DefSize-3] == '⬛')
+						c[pos-DefSize-3] = 'A';
+					
+					if (area[1] == true && c[pos-DefSize-2] == '⬛')
+						c[pos-DefSize-2] = 'B';
+					
+					if (area[2] == true && c[pos-DefSize-1] == '⬛')
+						c[pos-DefSize-1] = 'C';
+					
+					if (area[3] == true && c[pos-2] == '⬛')
+						c[pos-2] = 'D';
+					
+					if (area[4] == true && c[pos] == '⬛')
+						c[pos] = 'E';
+					
+					if (area[5] == true && c[pos+DefSize-1] == '⬛')
+						c[pos+DefSize-1] = 'F';
+					
+					if (area[6] == true && c[pos+DefSize] == '⬛')
+						c[pos+DefSize] = 'G';
+					
+					if (area[7] == true && c[pos+DefSize+1] == '⬛')
+						c[pos+DefSize+1] = 'H';
+					
+					*/
+				}
+			}	
+			
 			else if (c[pos-1] == '⬛' && mines[pos-1] == true)
 			{
 				RevealMines(mines,c);
 				System.out.println("Game Over");
 				GameOver = true;
-			}
-			if (SquaresLeft == 0)
-			{
-				System.out.println("You won!!!");
-				GameOver = true;
-			}
+			}				
+				
 		}
 	}
 	////////////////////////////////////////////////////////////
@@ -103,34 +156,34 @@ public class fx {
 		}
 	}
 	/////////////////////////////////////////////////////////////
-	public static int V(Boolean[] area, Boolean[] mines, int pos, int s)
+	public static int V(Boolean[] area, Boolean[] mines, int pos, int row)
 	{
 		int sum = 0;
 		pos--;
-		s++;
+		row++;
 		for (int i=0;i<8;i++)
 		{
 			if (area[i] == true)
 			{
 				if (i==0)
-					sum+=(mines[pos-s-1]== true) ? 1 : 0;
+					sum+=(mines[pos-row-1]== true) ? 1 : 0;
 				if (i==1)
-					sum+=(mines[pos-s ]== true) ? 1  : 0;
+					sum+=(mines[pos-row ]== true) ? 1  : 0;
 				if (i==2)
-					sum+=(mines[pos-s+1]== true) ? 1  : 0;					  //  //    _  _  _
+					sum+=(mines[pos-row+1]== true) ? 1  : 0;				  //  //    _  _  _
 				if (i==3)													 //  //	   |0||1||2|
 					sum+=(mines[pos-1]== true) ? 1  : 0;					//  //	   |3|   |4|
 				if (i==4)							  					   //  //	   |5||6||7|
 					sum+=(mines[pos+1]== true) ? 1  : 0;				  //  //
 				if (i==5)
-					sum+=(mines[pos+s-1]== true) ? 1  : 0;
+					sum+=(mines[pos+row-1]== true) ? 1  : 0;
 				if (i==6)
-					sum+=(mines[pos+s  ]== true) ? 1  : 0;
+					sum+=(mines[pos+row  ]== true) ? 1  : 0;
 				if (i==7)
-					sum+=(mines[pos+s+1]== true) ? 1  : 0;
+					sum+=(mines[pos+row+1]== true) ? 1  : 0;
 			}
 		}
-		//System.out.println(s);
+		//System.out.println(row);
 		return sum;
 	}
 	/////////////////////////////////////////////////////////////

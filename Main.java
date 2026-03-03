@@ -11,9 +11,11 @@ public class Main {
 		{
 			System.out.println("Enter grid size: ");
 			size = rd.nextInt();
+			if (size < 2)
+				{
+					size = 4;
+				}
 			fx.DefSize = size-1;
-			if (size < 1)
-				size = 4;
 			size*=size;
 			char[] grid = new char[size];
 			Boolean[] mines = new Boolean[size];
