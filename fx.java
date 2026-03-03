@@ -14,7 +14,8 @@ public class fx {
 			System.out.println("Invalid");
 		else
 		{
-			if (c[pos-1] == '⬛' && mines[pos-1] == false)
+			//if (c[pos-1] == '⬛' && mines[pos-1] == false)
+			if (c[pos-1] == '*' && mines[pos-1] == false)
 			{
 				Boolean[] area = {true,true,true,true,true,true,true,true};
 				SquaresLeft--;
@@ -51,8 +52,33 @@ public class fx {
 					System.out.println("You won!!!");
 					GameOver = true;
 				}
-				else if (c[pos-1] == '⚪')
+				//else if (c[pos-1] == '⚪')
+				else if (c[pos-1] == '0')
 				{
+					if (area[0] == true && c[pos-DefSize-3] == '*')
+						SelectSquare(pos-DefSize-2, c, mines);
+					
+					if (area[1] == true && c[pos-DefSize-2] == '*')
+						SelectSquare(pos-DefSize-1, c, mines);
+					
+					if (area[2] == true && c[pos-DefSize-1] == '*')
+						SelectSquare(pos-DefSize, c, mines);
+					
+					if (area[3] == true && c[pos-2] == '*')
+						SelectSquare(pos-1, c, mines);
+					
+					if (area[4] == true && c[pos] == '*')
+						SelectSquare(pos+1, c, mines);
+					
+					if (area[5] == true && c[pos+DefSize-1] == '*')
+						SelectSquare(pos+DefSize, c, mines);
+					
+					if (area[6] == true && c[pos+DefSize] == '*')
+						SelectSquare(pos+DefSize+1, c, mines);
+					
+					if (area[7] == true && c[pos+DefSize+1] == '*')
+						SelectSquare(pos+DefSize+2, c, mines);
+					/*
 					if (area[0] == true && c[pos-DefSize-3] == '⬛')
 						SelectSquare(pos-DefSize-2, c, mines);
 					
@@ -105,7 +131,8 @@ public class fx {
 				}
 			}	
 			
-			else if (c[pos-1] == '⬛' && mines[pos-1] == true)
+			//else if (c[pos-1] == '⬛' && mines[pos-1] == true)
+			else if (c[pos-1] == '*' && mines[pos-1] == true)
 			{
 				RevealMines(mines,c);
 				System.out.println("Game Over");
@@ -117,10 +144,11 @@ public class fx {
 	////////////////////////////////////////////////////////////
 	public static void DisplayGrid(char[] c)
 	{
+		System.out.println();
 		int t = 0;
 		for (int i=0;i<c.length;i++)
 		{
-			System.out.print(c[i]+" ");
+			System.out.print(c[i]+" ");
 			t+=1;
 			if(t%Math.sqrt(c.length) == 0)
 				System.out.println();
@@ -152,7 +180,8 @@ public class fx {
 		for (int i=0;i<mine.length;i++)
 		{
 			if (mine[i] == true)
-				grid[i] = '❌';
+				grid[i] = 'X';
+				//grid[i] = '❌';
 		}
 	}
 	/////////////////////////////////////////////////////////////
@@ -187,5 +216,6 @@ public class fx {
 		return sum;
 	}
 	/////////////////////////////////////////////////////////////
-	public static char[] numbers = {'⚪','㊀','㊁','㊂','㊃','㊄','㊅','㊆','㊇'};
+	//public static char[] numbers = {'⚪','㊀','㊁','㊂','㊃','㊄','㊅','㊆','㊇'};
+	public static char[] numbers = {'0','1','2','3','4','5','6','7','8'};
 }

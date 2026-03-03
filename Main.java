@@ -21,7 +21,8 @@ public class Main {
 			Boolean[] mines = new Boolean[size];
 			for (int i=0;i<size;i++)
 			{
-				grid[i] = '⬛';
+				//grid[i] = '⬛';
+				grid[i] = '*';
 				mines[i] = false;
 			}
 			fx.DisplayGrid(grid);
