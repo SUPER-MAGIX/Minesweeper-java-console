@@ -32,7 +32,7 @@ Ye so i used Japanese number symbols because it seemed to work best with me.
 
 you enter the length of the grid (4 for 4x4, 10 for 10x10).
 
-The cells are numbered from 1 to n (where n is the number you entered earlier).
+The cells are numbered from 1 to n² (where n is the number you entered earlier).
 
 clear all the mines to win.
 
